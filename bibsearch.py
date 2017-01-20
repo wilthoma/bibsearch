@@ -12,8 +12,8 @@ parser.add_argument('strings', metavar='S', type=str, nargs='+',
 parser.add_argument('-n', action='store_true',
                     help='do not recurse subfolders (default: recurse)')
 
-parser.add_argument('-f', metavar='F', type=file,
-                    help='search in specific file')
+parser.add_argument('-f', metavar='F', type=str, nargs='+', default='.',
+                    help='search in specific file(s) or folder(s)')
 
 
 args = parser.parse_args()
@@ -21,15 +21,6 @@ args = parser.parse_args()
 #print args.n
 #print args.f
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 def parseFile(f, strings):
     #print("Processing: " + f)
@@ -66,14 +57,14 @@ def parseFile(f, strings):
             matches.append(b.strip())
     matches = list(set(matches))
     if  matches:
-        print( "*********** Matches found in: " + f )
+        print( "*********** " + f )
         for m in matches:
             print(m +"\n")
 
 
 
 
-mypath = os.path.curdir
+#mypath = os.path.curdir
 
 def parsedir(dir):
     for file in os.listdir(dir):
@@ -82,8 +73,16 @@ def parsedir(dir):
             parsedir(ff)
         if file.endswith(".tex"):
             parseFile(ff, args.strings)
-        
-parsedir(mypath)
+
+
+
+for path in args.f:
+    if os.path.isdir(path):
+        parsedir(path)
+    elif os.path.isfile(path):
+        parseFile(path)
+    else:
+        print "Not found: "+path
 
 
 
