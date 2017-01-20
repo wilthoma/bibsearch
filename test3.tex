@@ -1,0 +1,1268 @@
+\documentclass[a4paper]{amsart}
+%\usepackage{hyperref}
+%\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{txfonts, amsmath,amstext,amsthm,amscd,amsopn,verbatim,amssymb, amsfonts}
+\usepackage{fullpage}
+
+\usepackage[bbgreekl]{mathbbol}
+%\usepackage[babel=true,kerning=true]{microtype}
+%\usepackage{graphicx}
+%\usepackage{color}
+%\usepackage{pxfonts,txfonts}
+%\usepackage{pstricks, pstricks-add, pst-node, pst-coil}
+%\usepackage{array}
+%\usepackage[all, 2cell ]{xy}  \UseAllTwocells \SilentMatrices
+%\usepackage{graphicx} 
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{calc,3d}
+\usetikzlibrary{decorations,decorations.pathmorphing}
+\usetikzlibrary{through}
+\tikzset{ext/.style={circle, draw,inner sep=1pt},int/.style={circle,draw,fill,inner sep=1pt},nil/.style={inner sep=1pt}}
+\tikzset{exte/.style={circle, draw,inner sep=3pt},inte/.style={circle,draw,fill,inner sep=3pt}}
+\tikzset{diagram/.style={matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex}}
+\tikzset{diagram2/.style={matrix of math nodes, row sep=0.5em, column sep=0.5em, text height=1.5ex, text depth=0.25ex}}
+\tikzset{every picture/.append style={baseline=-.65ex}}
+
+%\usepackage{showkeys} 
+\theoremstyle{plain}
+  \newtheorem{thm}{Theorem}
+   \newtheorem{conj}[thm]{Conjecture}
+  \newtheorem{defi}[thm]{Definition}
+  \newtheorem{prop}[thm]{Proposition}
+  \newtheorem{defprop}[thm]{Definition/Proposition}
+  \newtheorem{cor}[thm]{Corollary}
+  \newtheorem{lemma}[thm]{Lemma}
+\theoremstyle{definition}
+  \newtheorem{ex}{Example}
+  \newtheorem{rem}{Remark}
+
+\newcommand{\alg}[1]{\mathfrak{{#1}}}
+\newcommand{\co}[2]{\left[{#1},{#2}\right]} % commutator
+\newcommand{\aco}[2]{\left\{{#1},{#2}\right\}}
+\newcommand{\eref}[1]{\eqref{#1}} % equation reference
+\newcommand{\pderi}[2]{ { \frac{\partial {#1} }{\partial {#2} } } }
+\newcommand{\pd}[2]{ { \frac{\partial {#1} }{\partial {#2} } } }
+\newcommand{\ad}{{\text{ad}}}
+\newcommand{\Ad}{{\text{Ad}}}
+\newcommand{\mbf}[1]{ {\pmb{#1}} }
+\newcommand{\edge}{{\rightarrow }} 
+\newcommand{\morphU}{{\mathcal{U} }} 
+\newcommand{\widebar}[1]{{\overline{#1}}}
+\newcommand{\p}{\partial}
+\newcommand{\Hom}{\mathop{Hom}}
+\newcommand{\folF}{\mathcal{F}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\K}{{\mathbb{K}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\U}{{\mathcal{U}}}
+\newcommand{\hU}{{\mathcal{U}}}
+\newcommand{\CG}{{\mathsf{CG}}}
+\newcommand{\fGCc}{\GC^{\geq 0}}
+\newcommand{\HGC}{{\mathrm{HGC}}}
+\newcommand{\TCG}{{\mathsf{TCG}}}
+\newcommand{\Ne}{{\mathcal{N}}} % Nerve
+\newcommand{\Graphs}{{\mathsf{Graphs}}}
+\newcommand{\fGraphs}{{\mathsf{fGraphs}}}
+\newcommand{\pdu}{{}^*} % predual
+\newcommand{\fml}{{\mathit{fml}}} % predual
+
+\newcommand{\te}{{\tilde{\mathsf{e}}}}
+
+\newcommand{\FreeLie}{\mathrm{Free}_{\Lie}}
+
+\newcommand{\Poiss}{{\mathsf{Poiss}}}
+
+\newcommand{\ICG}{\mathsf{ICG}}
+\newcommand{\ICGF}{\ICG^{\rm fr}}
+\newcommand{\FICG}{\ICGF}
+%\newcommand{\TCG}{\mathsf{TCG}}
+\newcommand{\TCGF}{\TCG^{\rm fr}}
+
+
+\newcommand{\Exp}{\mathrm{Exp}}
+\newcommand{\SGraphs}{{\mathsf{SGraphs}}}
+\newcommand{\dGraphs}{{\mathsf{Graphs}'}}
+\newcommand{\cGraphs}{{\mathsf{cGraphs}}}
+\newcommand{\fcGraphs}{{\mathsf{fcGraphs}}}
+\newcommand{\dfcGraphs}{{\mathsf{dfcGraphs}}}
+\newcommand{\fcGraphso}{\mathsf{fcGraphs}^{or}}
+\newcommand{\bGraphs}{{\mathsf{bGraphs}}}
+\newcommand{\hGraphs}{{\mathsf{hGraphs}}}
+\newcommand{\dSGraphs}{{\mathsf{SGraphs}'}}
+\newcommand{\Gr}{{\mathsf{Gra}}}
+\newcommand{\Gra}{{\mathsf{Gra}}}
+\newcommand{\dGr}{{\mathsf{dGra}}}
+\newcommand{\dGra}{{\mathsf{dGra}}}
+\newcommand{\hGra}{{\mathsf{hGra}}}
+\newcommand{\Ger}{{\mathsf{Ger}}}
+\newcommand{\tGer}{\widetilde{\mathsf{Ger}}}
+\newcommand{\tGernf}{\widetilde{\mathsf{Ger}_{nf}}}
+\newcommand{\LieBi}{{\mathsf{LieBi}}}
+\newcommand{\Graphso}{\mathsf{Graphs}^{or}}
+
+\newcommand{\SGr}{{\mathsf{SGra}}}
+\newcommand{\Aut}{{\mathrm{Aut}}}
+\newcommand{\hAut}{{\mathsf{hAut}}}
+\newcommand{\SGra}{{\mathsf{SGra}}}
+\newcommand{\fSGra}{{\mathsf{fSGra}}}
+\newcommand{\PT}{ \mathsf{PT} }
+
+\newcommand{\Tw}{\mathit{Tw}}
+\newcommand{\Def}{\mathrm{Def}}
+
+\newcommand{\Fund}{\mathrm{Fund}}
+
+\newcommand{\bigGra}{\mathsf{bigGra}}
+\newcommand{\op}{\mathcal}
+\newcommand{\hKS}{\mathsf{hKS}}
+\newcommand{\KS}{\mathsf{KS}}
+\newcommand{\homKS}{\mathsf{homKS}}
+\newcommand{\Br}{\mathsf{Br}}
+\newcommand{\hBr}{\mathsf{hBr}}
+\newcommand{\Lie}{\mathsf{Lie}}
+\newcommand{\ELie}{\mathsf{ELie}}
+%\newcommand{\Ger}{\mathsf{Ger}}
+\newcommand{\hoLie}{\mathsf{hoLie}}
+\newcommand{\hoELie}{\mathsf{hoELie}}
+\newcommand{\fSGraphs}{\mathsf{fSGraphs}}
+\newcommand{\SC}{\mathsf{SC}}
+\newcommand{\SG}{\mathsf{SG}}
+\newcommand{\ESG}{\mathsf{ESG}}
+\newcommand{\ESC}{\mathsf{ESC}}
+\newcommand{\EESC}{\mathsf{EESC}}
+
+\newcommand{\calc}{\mathsf{calc}}
+\newcommand{\Ass}{\mathsf{Assoc}}
+\newcommand{\Com}{\mathsf{Com}}
+\newcommand{\bigKS}{\mathsf{bigKS}}
+\newcommand{\bigChains}{\mathsf{bigChains}}
+\newcommand{\bigGraphs}{\mathsf{bigGraphs}}
+\newcommand{\FM}{\mathsf{FM}}
+\newcommand{\EFM}{\mathsf{EFM}}
+\newcommand{\cFM}{\mathsf{EFM}}
+\newcommand{\hc}{\mathit{hc}}
+
+\newcommand{\La}{\Lambda}
+\newcommand{\Der}{\mathrm{Der}}
+\newcommand{\BiDer}{\mathrm{BiDer}}
+%\newcommand{\Def}{\mathrm{Def}}
+
+\newcommand{\vout}{\mathit{out}}
+\newcommand{\vin}{\mathit{in}}
+\newcommand{\conn}{\mathit{conn}}
+\newcommand{\dirout}{\mathit{dir}_{out}}
+\newcommand{\opm}{\mathbf{m}}
+\newcommand{\bpm}{\begin{pmatrix}}
+\newcommand{\epm}{\end{pmatrix}}
+\newcommand{\Tpoly}{T_{\rm poly}}
+\newcommand{\Dpoly}{D_{\rm poly}}
+
+\newcommand{\GC}{\mathrm{GC}}
+\newcommand{\GCo}{\mathrm{GC}^{or}}
+\newcommand{\dGC}{\mathrm{dGC}}
+\newcommand{\fGC}{\mathrm{fGC}}
+\newcommand{\fGCo}{\mathrm{fGC}^{or}}
+%\newcommand{\fGCc}{\mathrm{fGCc}}
+\newcommand{\fGCco}{\mathrm{fcGC}^{or}}
+\newcommand{\dfGCc}{\mathrm{dfcGC}}
+\newcommand{\dfGC}{\mathrm{dfGC}}
+\newcommand{\GCor}{\mathrm{GC}^{or}}
+\newcommand{\hGCor}{\widehat{\mathrm{GC}}^{or}}
+\newcommand{\iGCor}{\widetilde{\mathrm{GC}}^{or}}
+
+\newcommand{\bigV}{\mathbf{V}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\mV}{\mathcal{V}}
+\newcommand{\hotimes}{\mathbin{\hat\otimes}}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\tder}{\alg{tder}}
+\newcommand{\sder}{\alg{sder}}
+\newcommand{\kv}{\alg{kv}}
+\newcommand{\bDelta}{\blacktriangle}%\mathbb{\Delta}}
+\newcommand{\tW}{ {[[u]]\otimes_{\gf[u]} W} }
+
+\newcommand{\grt}{\alg {grt}}
+\newcommand{\hoe}{\mathsf{hoe}}
+\newcommand{\e}{\mathsf{e}}
+
+\newcommand{\lo}{\longrightarrow}
+\newcommand{\BGC}{\mathsf{BGC}}
+\newcommand{\BGraphs}{\mathsf{BGraphs}}
+\newcommand{\BstG}{{}^*\mathsf{BGraphs}}
+
+\newcommand{\dimens}{\mathop{dim}}
+\newcommand{\gra}{\mathrm{gra}}
+\newcommand{\LC}{\mathrm{LC}}
+\newcommand{\stG}{{}^*\Graphs}
+\newcommand{\SO}{\mathit{SO}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\lD}{\mathsf{D}}
+\newcommand{\flD}{\lD^{\mathrm{fr}}}
+
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\dgca}{\mathsf{Dgca}}
+
+\renewcommand{\mod}{\mathrm{mod}}
+
+\newcommand{\mC}{{\mathcal{C}}}
+\newcommand{\mD}{{\mathcal{D}}}
+\newcommand{\mT}{{\mathcal{T}}}
+\newcommand{\Hop}{{\mathrm{HOp}}}
+\newcommand{\Op}{{\mathrm{Op}}}
+\newcommand{\Tree}{{\mathsf{Tree}}}
+
+\newcommand{\mW}{\mathcal{W}}
+\newcommand{\mF}{\mathcal{F}}
+\newcommand{\dgVect}{\mathrm{dgVect}}
+\newcommand{\FC}{\mathcal{FC}}
+\newcommand{\gr}{\mathit{gr}}
+\newcommand{\id}{\mathit{id}}
+
+
+\newcommand{\DK}{{\alg p}}
+\newcommand{\DKF}{\DK^{\mathrm{fr}}}
+\newcommand{\stGC}{{}^*\GC}
+\newcommand{\tadpole}{
+\begin{tikzpicture}[baseline=-.65ex]
+\node[int] (v) at (0,0) {};
+\draw (v) edge[loop] (v);
+\end{tikzpicture}
+}
+
+\newcommand{\beq}[1]{
+\begin{equation}\label{#1}
+}
+\newcommand{\eeq}{
+\end{equation}
+}
+
+\newcommand{\hdgca}{h\dgca}
+
+\newcommand{\Vect}{\mathsf{Vect}}
+\renewcommand{\Top}{\mathsf{Top}}
+
+%\newcommand{\Fund}{\mathrm{Fund}}
+
+%\renewcommand{\texorpdfstring}[2]{{#1}}
+
+\newcommand{\oltimes}{\mathop{\text{$\ltimes$\makebox[0pt][r]{$\otimes$}}}\limits}
+
+\begin{document}
+\title{Proof of conjectures?}
+%\author{Benoit Fresse}
+
+
+%\author{Anton Khoroshkin}
+%\address{Faculty of mathematics\\ National University Higher School of Economics,\\ 
+%7 Vavilova street, Moscow, Russia, 115280}
+%\email{akhoroshkin@hse.ru}
+%
+%\author{Victor Turchin}
+%\address{Department of Mathematics\\
+%  Kansas State University\\
+%  138 Cardwell Hall\\
+%  Manhatan, KS 66506, USA}
+%  \email{turchin@ksu.edu}
+%\author{Thomas Willwacher}
+%\address{Institute of Mathematics \\ University of Zurich \\  
+%Winterthurerstrasse 190 \\
+%8057 Zurich, Switzerland}
+%\email{thomas.willwacher@math.uzh.ch}
+%
+
+%
+%\thanks{A.K. has been partially supported by RFBR grants 13-02-00478, 13-01-12401, 
+%by "The National Research University--Higher School of Economics" Academic Fund Program in 2013-2014,
+%research grant 14-01-0124, by Dynasty foundation and Simons-IUM fellowship.}
+%\thanks{V.T. acknowledges Max-Planck-Institut f\"ur Mathematik  (Bonn) and the Institut des Hautes Etudes Scientifique for hospitality}
+%\thanks{T.W. acknowledges partial support by the Swiss National Science Foundation (grant 200021\_150012 and the SwissMap NCCR)}
+
+% \address{Department of Mathematics\\ ETH Zurich\\ R\"amistrasse 101 \\ 8092 Zurich, Switzerland}
+% \email{t.willwacher@gmail.com}
+
+%\thanks{The author was partially supported by the Swiss National Science Foundation (grant 200020-105450).}
+% \subjclass[2000]{16E45; 53D55; 53C15; 18G55}
+% \date{}
+%\keywords{Formality, Deformation Quantization, Operads}
+
+
+\maketitle
+
+\section{Introduction}
+I discuss a proof (hopefully) of our main conjectures.
+Let us use the following notation:
+
+\begin{itemize}
+\item $Z_G^n\in \GC_n\otimes H(BG)$ is the Maurer-Cartan element describing the $G$ action on $E_n$, for $G$ a compact Lie group. Say $G$ is connected here for simplicity, if it isn't, there is a slight adaptation. The tensor product here and below is a completed tensor product.
+\item We abbreviate $Z_m^n:=Z_{\SO(m)}^n$ and $Z_{k,l}^n:=Z_{\SO(k)\times \SO(l)}^n$ for $k+l\leq n$.
+\end{itemize}
+
+To recall, our main conjectures are the following:
+\begin{conj}
+\label{conj:main1}
+\begin{itemize}
+\item For $n$ even, $Z_n^n$ is gauge equivalent to 
+\[
+Z^n_{conj} = E_n\tadpole.
+\]
+\item For $n$ odd, $Z_n^n$ is gauge equivalent to 
+ \[
+ Z^n_{conj} = (const)
+ \sum_{j\geq 1}
+ p_{2n-2}^{j}
+\frac{1}{(2j+1)!} 
+\begin{tikzpicture}[baseline=-.65ex]
+ \node[int] (v) at (0,.5) {};
+ \node[int] (w) at (0,-0.5) {};
+ \draw (v) edge[bend left=50] (w) edge[bend right=50] (w) edge[bend left=30] (w) edge[bend right=30] (w);
+ \node at (2,0) {($2j+1$ edges)};
+ \node at (0,0) {$\scriptstyle\cdots$};
+\end{tikzpicture}
+\]
+\end{itemize}
+\end{conj}
+
+In particular, the above conjectures would have the following corollary.
+\begin{cor}[Triviality of actions]
+\label{cor:trivial}
+We have $Z_m^n\sim 0$, where $\sim$ denotes gauge equivalence, in either of the two cases (i) $m\leq n-1$ and $n$ even or (ii) $m\leq n-2$ and $n$ odd. 
+\end{cor}
+
+
+Note that on $\GC_n$ we have a grading by loop order. Call the generator $L$ (it maps a graphs to the number of loops times that graph).
+Then we have a map of dg Lie algebras
+\begin{align*}
+\Phi_{k,l}^n:  \GC_{n-k}\otimes H(B \SO(l)) \to  \GC_n\otimes H(B(\SO(k)\times \SO(l)))
+\\
+\Gamma \mapsto {E_k}^L \Gamma
+\end{align*}
+where $E_k$ is the Euler class in $H(B\SO(k))$.
+
+\begin{rem}
+Denote the conjectural form of $Z_n^n$ of Conjecture \ref{conj:main1} by $Z^n_{conj}$. Then in particular
+\beq{equ:PhiZ}
+\Phi_{2,n-2}^n(Z_{conj}^{n-2}) = Z_{conj}^n.
+\eeq
+\end{rem}
+
+The main claim is that using a version of equivariant localization one can show the following Theorem.
+\begin{thm}\label{thm:locmain}\label{thm:mainloc}
+We have that for $k\geq 0$ even and $l\geq 0$ such that $k<n$ and $k+l\leq n$
+\[
+Z_{k,l}^n \sim_{E_k} \Phi_{k,l}^n (Z_{l}^{n-k}).
+\]
+Here $\sim_{E_k}$ means "gauge equivalent after formally inverting $E_k$". In other words this is gauge equivalence in 
+$\GC_n\otimes H(B(\SO(k)\times \SO(l)))_{E_k}$.
+\end{thm}
+
+\section{Derivation of main conjecture from Theorem \ref{thm:locmain} }
+
+\subsection{First "exercise": derivation of Corollary \ref{cor:trivial} from Theorem \ref{thm:locmain}}
+Although not strictly speaking necessary, let us give an independent proof of Corollary \ref{cor:trivial} from Theorem \ref{thm:locmain}. Let us also proceed in unnecessary detail to prepare for the similar but more complicated proof of the general case.
+To this end, use the case of the Theorem for $l=0$ and $k=n-2$ ($n$ even) or $k=n-3$ ($n$ odd).
+ We find that in each of these cases
+ \[
+ Z_{k}^n \sim_{E_k} 0,
+ \]
+ using that by the standard Lemmas $Z_0^n=0$ for $n \geq 2$. (Note: $Z_0^1\neq 0$!)
+ 
+Our remaining task is hence to get rid of the localization in $E_k$. In other words we want to show that the localized gauge equivalence implies the non-localized.
+
+To this end we use the filtration on $\GC_n$ by the number of vertices and proceed by induction.
+Evidently, or by explicit computation of the integrals, $Z_{k}^n$ does not contain terms with 1 or 2 vertices.
+Assume inductively that, possibly after some gauge transformation we can bring $Z_{k}^n$ into a form without graphs with $< r$ vertices. To simplify the notation, we will then assume that $Z_{k}^n$ is of that form to start with.
+
+The potential leading order term is of the form 
+\[
+\gamma = \sum_j e_j \gamma_j
+\]
+where $\gamma_j\in \GC_n$ are linear combinations of graphs with exactly $r$ vertices and $e_j$ range over a fixed (say monomial) basis of $H(B\SO(k))$.
+The Maurer-Cartan equation then implies that $\gamma$ is closed, i.e., $\delta \gamma=0$. Our goal is to show that $\gamma$ is exact. If we can show that, say $\gamma=\delta \nu$, then we perform a gauge transformation by $\exp(\nu)$ and have shown our induction hypothesis for one larger $l$. (Hence we would be done by induction.)
+Of course, since $\delta$ does not involve any non-trivial polynomial in the Euler and Pontryagin classes, closedness of $\gamma$ actually means that $\delta \gamma_j=0$ for each $j$, and we need to show that each $\gamma_j$ is separately exact.
+
+Now we use that $Z_k^n\sim_{E_k} 0$. Concretely, the leading oder (with $l$ vertices) terms in $Z_k^n$ considered as element in the localized dg Lie algebra 
+\[
+\GC_n \otimes H(B\SO(k))_{E_k}
+\]
+are evidently also $\gamma$. Now by the gauge triviality $Z_k^n\sim_{E_k} 0$ we conclude that $\gamma$ is exact as an element of of the previous (localized) dg Lie algebra, i.e., there is a 
+\[
+\kappa \in   \GC_n \otimes H(B\SO(k))_{E_k}
+\]
+such that $\delta\kappa = \gamma$.
+Concretely, we may extend the bases $e_j$ of $H(B\SO(k))$ above to a basis $H(B\SO(k))_{E_k}$ by adding some monomials $f_j$ which contain negative powers of $E_k$. (Here we use that the map $H(B\SO(k))\to H(B\SO(k))_{E_k}$ is injective.)
+Then $\kappa$ will have the form 
+\[
+\kappa = \sum_j e_j\kappa_j + \sum_j f_j \kappa_j'.
+\]
+The equation $\delta\kappa = \gamma$ then says that 
+\[
+\delta \kappa_j =\gamma_j
+\]
+for each $j$ while $\delta \kappa_j'=0$.
+But then we are done, we just pick 
+\[
+\nu := \sum_j e_j \kappa_j,
+\] 
+and this will satisfy $\delta\nu = \gamma$ as desired. So we can continue the induction and hence show the Corollary, except for one small issue:
+When $n$ is even, we have shown that $Z_{n-2}^n\sim 0$, while we want $Z_{n-1}^n\sim 0$.
+However, the only difference is that $H(B\SO(n-1))= H(B\SO(n-2))^{\Z_2}$, and picking the $\nu$ above $\Z_2$ invariantly (say by averaging) we can run the same proof working with $\Z_2$-invariant elements only. 
+
+For later use, let us also remark that the main ingredient in the above proof was showing the following Lemma.
+\begin{lemma}
+The map
+\[
+(\GC_n \otimes H(B\SO(k)), \delta)
+\to
+(\GC_n \otimes H(B\SO(k))_{E_k}, \delta)
+\]
+induces an injective map in cohomology.
+\end{lemma}
+
+\subsection{Derivation of Conjecture \ref{conj:main1} from Theorem \ref{thm:locmain}}
+We proceed by induction on $n$. For $n=1$, $n=2$ and $n=3$ Conjecture \ref{conj:main1} is known.
+Now we invoke Theorem \ref{thm:locmain} for $k=2$, $l=n-2$, assuming $n\geq 4$.\footnote{In fact, the case $n=3$ may also be tackled in this way, giving a second proof of the conjecture for $n=3$. However, in the interest of uniformity of notation, let us assume $n\geq 4$.}
+The Theorem then states that
+\[
+ Z_{2,n-2}^n \sim_{u} \Phi_{2,n-2}^n (Z_{n-2}^{n-2}),
+\] 
+where we abbreviate the orthogonal Euler class by $u$ (it has degree $+2$).
+Now by our induction hypothesis $Z_{n-2}^{n-2}\sim Z_{conj}^{n-2}$, and hence, using \eqref{equ:PhiZ} we find that
+\beq{equ:tmp11}
+Z_{2,n-2}^n \sim_{u}  Z_{conj}^n.
+\eeq
+Next, note that clearly $Z_{2,n-2}^n$ is the image of $Z_n^n$ under the map 
+\[
+\GC_n\otimes H(B\SO(n)) \to \GC_n\otimes H(B(\SO(2)\times \SO(n-2))).
+\]
+Let us be explicit how the underlying map of the coefficient rings looks like.
+For $n$ even we have
+\begin{gather*}
+H(B\SO(n)) = \R[P_4,\dots,P_{2n-4}, E_n] \to H(B(\SO(2)\times \SO(n-2))) \cong \R[u, P_4,\dots,P_{2n-8},E_{n-2}]
+\\
+E_n \mapsto u E_{n-2} \\
+P_{2n-4}\mapsto u^2 P_{2n-8}+ E_{n-2}^2 \\
+P_j\mapsto u^2 P_{j-4} + P_j \quad \text{(for $j\neq 2n-4$)}\, .
+\end{gather*}
+
+For $n$ odd we have
+\begin{gather*}
+H(B\SO(n)) = \R[P_4,\dots,P_{2n-2}] \to H(B(\SO(2)\times \SO(n-2))) \cong \R[u, P_4,\dots,P_{2n-6}]
+\\
+P_{2n-2}\mapsto u^2 P_{2n-6} \\
+P_j\mapsto u^2 P_{j-4} + P_j \quad \text{(for $j\neq 2n-2$)} \, .
+\end{gather*}
+
+Now localize the rings on the right hand side over $u$. We can then exchange the generator $E_{n-2}$ by $E_n:=uE_{n-2}$, respectively $P_{2n-6}$ by $P_{top} := u^2P_{2n-6}$.
+The maps above then change in that for $n$ even
+\begin{align*}
+E_n&\mapsto E_n \\ 
+P_{2n-4}&\mapsto u^2 P_{2n-8}+ u^{-2} E_{n}^2 \\
+P_j&\mapsto u^2 P_{j-4} + P_j 
+\end{align*}
+and for $n$ odd
+\begin{align*}
+P_{2n-2} &\mapsto P_{top} \\  
+P_{2n-6}&\mapsto u^2 P_{2n-10}+u^{-2} P_{top} \\
+P_j&\mapsto u^2 P_{j-4} + P_j . 
+\end{align*}
+
+Now we want to use \eqref{equ:tmp11} to show that $Z_{n}^n \sim  Z_{conj}^n$ by a similar but slightly more complicated argument than in the preceding subsection.
+We have to make a case distinction according to whether $n$ is even or odd.
+Suppose first that $n$ is even.
+Then we perform an induction on the number of vertices in graphs, plus the power of $E_n$ in the coefficient.
+Call the resulting number the weight temporarily.
+Assume that $Z_{n}^n \sim Z_{conj}^n + (\dots)$, where $(\dots)$ are terms of weight $\geq r$.
+To simplify the notation we will in fact assume that $Z_{n}^n = Z_{conj}^n + (\dots)$ (i.e., change the gauge so that the equation holds before proceeding).
+We denote the terms of weight exactly $r$ in $Z_{n}^n$ by $\gamma$.
+
+We write 
+\[
+\gamma =\sum_j e_j \gamma_j
+\]
+where now the $e_j$ range over a basis of $H(B\SO(n-1))$ while 
+\[
+\gamma_j\in \GC_n \otimes \R[E_{n}].
+\]
+
+The Maurer-Cartan equation implies that $D\gamma=0$, where $D=\delta+[Z_{conj}^n,-]=\delta+E_n\nabla$.
+Our task is to show that $\gamma$ is $D$-exact. Since $D$ does not involve any polynomial in the Pontryagin classes we in fact have $D\gamma_j=0$ for each $j$ separately, and our goal is equivalent to showing that each $\gamma_j$ is separately $D$-exact.
+
+Now by \eqref{equ:tmp11} we know that the image of $\gamma$ in  $(\GC_n \otimes \R[u,u^{-1}, P_4,\dots,P_{2n-8},E_n], D)$ is exact. We have hence reached our goal of showing exactness of $\gamma$ if we can show that the following:
+\begin{lemma}
+The map of complexes
+\[
+(\GC_n \otimes \R[P_4,\dots,P_{2n-4},E_n], D)
+\to 
+(\GC_n \otimes \R[u,u^{-1}, P_4,\dots,P_{2n-8},E_n], D)
+\]
+by mapping the coefficient ring according to the above prescription induces an injective map in cohomology.
+\end{lemma}
+\begin{proof}
+To see this one proceeds as follows:
+\begin{itemize}
+\item As complexes, both sides have the form $(\dots)\otimes (\GC_n\otimes \R[E_n],D)$.
+\item Pick the obvious monomial bases of $\R[P_4,\dots,P_{2n-4},E_n]$ and $ \R[u,u^{-1}, P_4,\dots,P_{2n-8},E_n]$, both considered as $\R[E_n]$-modules.
+\item Impose the lexicographic ordering on these bases, with the ordering of the generating symbols such that  $P_i>P_j$ if $i>j$ and $P_i>u>u^{-1}$ for all $i$.
+\item It is sufficient to show that the map induced by the leading order piece of the map $\R[P_4,\dots,P_{2n-4},E_n] \to \R[u,u^{-1}, P_4,\dots,P_{2n-8},E_n]$ is injective on cohomology.
+\item Checking the formulas, the leading order piece is given by the assignment 
+\begin{align*}
+E_n\mapsto E_n \\ 
+P_{2n-4}\mapsto u^2 P_{2n-8} \\
+P_j\mapsto P_j .
+\end{align*}
+It is clear that this induces an injective map on basis elements, and hence we are done.
+\end{itemize}
+\end{proof}
+Thus we have shown Conjecture \ref{conj:main1} in the case of even $n$.
+
+Next consider the case of odd $n$. Here we proceed similarly, but we pick the initial filtration on graphs on the number of vertices.
+Assume that $Z_{n}^n \sim Z_{conj}^n + (\dots)$, where $(\dots)$ are terms with graphs with $\geq r$ vertices.
+To simplify the notation we will in fact assume again that $Z_{n}^n = Z_{conj}^n + (\dots)$.
+
+We call the term with exactly $r$ vertices $\gamma$ again.
+We write 
+\[
+\gamma =\sum_j e_j \gamma_j
+\]
+where now the $e_j$ range over a basis of $H(B\SO(n-2))$ wile 
+\[
+\gamma_j\in \GC_n \otimes \R[P_{2n-2}].
+\]
+Now the Maurer-Cartan equation implies that $D\gamma=0$, where $D=\delta+[Z_{conj}^n,-]$.
+Our task is to show that $\gamma$ is $D$-exact. Since $D$ does not involve any polynomial in the lower Pontryagin classes we in fact have $D\gamma_j=0$ for each $j$ and our goal is equivalent to showing that each $\gamma_j$ is separately $D$-exact.
+
+Using \eqref{equ:tmp11} and proceeding as for even $n$ before, we end up with having to show the following result:
+\begin{lemma} 
+The map 
+\[
+(\GC_n \otimes \R[P_4,\dots,P_{2n-2}], D)
+\to 
+(\GC_n \otimes \R[u,u^{-1}, P_4,\dots,P_{2n-10},P_{2n-2}], D)
+\]
+induces an injective map on cohomology. 
+\end{lemma}
+
+\begin{proof} (Sketch)
+One is tempted to proceed as for even $n$, but this is not correct since now there can be infinitely many graphs with given number of vertices. (One has coefficient monomials of arbitrary length, hence a top down induction is not permitted.)
+To repair, one has to use the filtration by loop order in addition.
+Do a proof by contradiction: Pick a cocycle x in $(\GC_n \otimes \R[P_4,\dots,P_{2n-2}], D)
+$ which is not exact, but is sent to an exact element under the above map.
+We may assume that the representative has been chosen of maximal loop order within all representatives.
+(Furthermore, we may also assume the class has been chosen so as to minimize that loop order.)
+Then, proceeding as for even $n$ one shows that the leading (by loop order) piece can be killed, i.e., one can find a representative of higher loop order, and hence find a contradiction.
+(If we can find representatives of arbitrary high loop order the class is zero.)
+(The last statement uses that the spectral sequence abuts on a finite page, if we restrict to fixed number of vertices.)
+\end{proof}
+
+This then also shows the Conjecture \ref{conj:main1} for odd $n$.
+\hfill\qed
+
+
+\begin{rem}
+A point that I am uncertain about: One would think that the statement of Theorem \ref{thm:locmain} is stronger the larger $k$ you take.
+However, if for $n$ odd we take the maximum $k=n-1$, then actually I cannot derive the main Conjecture.
+It is a bit puzzling, so one must check carefully there is no mistake.
+\end{rem}
+
+FOR US TODO: The above arguments are somewhat messy and I would like to have a cleaner (or at least as clean as possible) derivation.
+
+\newcommand{\hFM}{\widehat{\FM}}
+
+
+\section{Equivariant localization and proof of Theorem \ref{thm:locmain}}
+\subsection{A relative version of configuration space}
+Consider $\R^m$ as a fixed subset of $\R^n$ by embedding it as a coordinate hyperplane for the first $m$ coordinates.
+We define the space 
+\[
+\FM_{m,n}(r,s) \subset \FM_n(r+s) 
+\]
+as the subspace for which the last $s$ points lie on a plane $\R^m\subset \R^n$.
+More precisely, the space $\FM_{m,n}(r,s)$ fits into a pullback diagram
+\[
+ \begin{tikzcd}
+\FM_{m,n}(r,s) \ar{r}\ar{d} & \FM_n(r+s) \ar{d} \\
+\FM_m(s) \ar{r} & \FM_n(r)
+ \end{tikzcd}\, .
+\]
+
+Following Kontsevich's notation we call the $r$ first points \emph{type I points} and the others $s$ points (which lie in a plane) \emph{type II points}.
+The totality of spaces $\FM_{m,n}(-,-)$ together with $\FM_n$ forms a colored operad $\hFM_{m,n}$ such that
+\begin{itemize} 
+\item The operations with output in color 1 are
+\[
+\hFM_{m,n}^1(r,s)=
+\begin{cases}
+\FM_n(r) & \text{for $s=0$} \\
+\emptyset & \text{otherwise} 
+\end{cases}.
+\]
+\item The operations with output in color 2 are
+\[
+\hFM_{m,n}^2(r,s)=
+\FM_{m,n}(r,s) \quad \text{for $r\geq 0$ and $s\geq 1$}.
+\]
+\end{itemize}
+The operadic compositions are inherited from those on $\FM_n$, i.e., defined by gluing one configuration into another.
+
+\begin{rem}
+There is also a variant of the above colored operad in which one allows for operations with output in color 2 but no input in color 2.
+The definition of the appropriate compactification in that case is slightly more intricate, however. In this paper we only need to work with the version above.
+\end{rem}
+
+Obviously, the colored operad $\hFM_{m,n}$ is equipped with a natural action of $O(m)\times O(n-m)$, by restriction of the $O(n)$ action on $\FM_n$.
+
+
+
+FOR US: The colored operad $\FM_{m,n}$ is a variant of the Swiss-Cheese operad we already discussed for a different project. (Namely that the relative formality is equivalent to $\FM_{m,n}$ being formal.) I forgot who introduced these operads,... was it Budney? Do you have the reference?
+
+% \begin{rem}
+%  More generally, one can define for any operad map $f: \op Q\to \op P$, with $\op P$ equipped with a $\Lambda$-structure \cite{Fresse}, a two-colored operad $\op X_f$ extending $\op P$ in color one, with the operations in color 2 fitting into a pullback diagram
+% \[
+%   \begin{tikzcd}
+% \op X^2_f(r,s) \ar{r}\ar{d} & \op P(r+s) \ar{d}{\Lambda} \\
+% \op Q(s) \ar{r}{f} & \op P(s)
+%  \end{tikzcd}\, .
+% \]
+% In our case (i.e., $\op X=\hFM_{m,n}$) the underlying operad map is $\FM_m\to \FM_n$.
+% \end{rem}
+
+\begin{rem}\label{rem:twocolopfromop}
+Let $\op P$ be an operad. Let us define a two-colored operad $\op P^{2-col}$, such that 
+\begin{align*}
+ \op P^{2-col,1}(r,s) &=
+\begin{cases}
+ \op P(r) & \text{if $s=0$} \\
+0& \text{otherwise}
+\end{cases}
+&
+ \op P^{2-col,2}(r,s) &=
+\begin{cases}
+ \op P(r+s) & \text{if $s\geq 1$} \\
+0& \text{otherwise},
+\end{cases}
+\end{align*}
+with the operadic compositions inherited from $\op P$.
+\end{rem}
+
+
+
+
+\newcommand{\stGra}{{}^*\Gra}
+%\newcommand{\xGra}{\mathsf{xGra}}
+%\newcommand{\hGra}{\widehat{\Gra}}
+%\newcommand{\hxGra}{\widehat{\xGra}}
+
+%\newcommand{\stxGra}{{}^*\xGra}
+%\newcommand{\fxGC}{\mathsf{xfGC}}
+%\newcommand{\xGC}{\mathsf{xGC}}
+
+\newcommand{\sthGra}{\widehat{\stGra}}
+%\newcommand{\sthxGra}{\widehat{\stxGra}}
+
+\newcommand{\hZ}{\hat Z}
+%\newcommand{\hxZ}{\hat{xZ}}
+
+
+\subsection{A complex of graphs}
+Recall the cooperad $\stGra_n$ from section \ref{}. Set $G=\SO(m)\times \SO(n-m)$.
+First let us define a two colored cooperad $\stGra_{m,n}=\stGra_n^{2-col}$ from $\stGra_n$ using the construction of Remark \ref{rem:twocolopfromop}.
+More concretely, we define a family of graded vector spaces $\stGra_{m,n}(r,s)=\stGra_n(r+s)$ consisting of graphs in $r$ "type I" and $s$ "type II" vertices, with the same sign and degree conventions as for $\stGra_n$. 
+In pictures, we shall distinguish the type II vertices by drawing them on a "baseline", which shall be thought of representing $\R^m$, as follows
+\[
+\begin{tikzpicture}
+\draw (-1,0) -- (1,0);
+\node[ext] (u) at (-.5,0) {$1$};
+\node[ext] (v) at (.5,0) {$2$};
+\node[ext] (w) at (-.5,.5) {$1$};
+\node[ext] (x) at (.5,.5) {$2$};
+\draw (u) edge[bend left] (v) edge (w) (w) edge (v) edge(x) (x) edge (v) edge (u);
+\end{tikzpicture}
+\]
+
+The pair $\stGra_n(-)$ and $\stGra_{m,n}(-,-)$ is naturally a two colored Hopf cooperad, which we call $\sthGra_{m,n}$.
+There is a map of Hopf cooperads
+\beq{equ:sthGramap}
+\sthGra_{m,n}\otimes H(BG) \to \Omega_{PA}^G (\hFM_{m,n})
+\eeq
+given by the same formulas as the corresponding map for $\stGra_n$.
+
+%Next restrict to even $n-m$ for simplicity. (The case $n-m$ odd can be handled, but we will not use it anyway.)
+%Define 
+%\[
+%\stxGra_{m,n}(r,s)=\stGra_{m,n}(r,s) \otimes (\wedge \R[n-m-1])^{\otimes r}.
+%\]
+%Combinatorially, this shall be interpreted as graphs having an optional marking of degree $n-m-1$ on the type II vertices.
+%In pictures, we shall indicate the marking by drawing a dashed line to the baseline as follows.
+%\[
+%\begin{tikzpicture}
+%\draw (-1,0) -- (1,0);
+%\node[ext] (u) at (-.5,0) {$1$};
+%\node[ext] (v) at (.5,0) {$2$};
+%\node[ext] (w) at (0,.7) {$1$};
+%\draw (w) edge (v) edge (u)  edge[dashed] (0,0);
+%\end{tikzpicture}
+%\]
+%The vector spaces $\stGra_n(-)$ and $\stxGra_{m,n}(-,-)$ again form a two-colored coperad $\sthxGra_{m,n}$: one just extends the cocomposition naturally such possible markings "remain at the vertex as far as possible", with the convention that double markings make the graph zero.
+%
+%We can extend the map \eqref{equ:sthGramap} to a map of graded dgcas, compatible with the cooperadic cocomposition
+%\beq{equ:sthxGramap}
+%\sthxGra_{m,n}\otimes H(BG) \to \Omega_{PA}^G (\hFM_{m,n})
+%\eeq
+%by assigning to each marking at vertex $j$ the pullback of the $\SO(n-m)$-equivariant volume form $\Omega_{sm}^{S^{n-m-1}}$ under the projection
+%\[
+%\pi_j : \FM_{m,n}(r,s) \to S^{n-m-1}
+%\]
+%by projecting the coordinates of the $j$-th point on the orthogonal plane $\R^{n-m}$.
+%Concretely, if the $j$-th point has coordinates $(x_1,\dots,x_n)$, then the corresponding point on $S^{n-m-1}$ is
+%\[
+%\frac {(x_{m+1},\dots,x_{n})}{\sqrt{ x_{m+1}^2 + \cdots + x_{n}^2 } }.
+%\]
+%A graph with markings at type II vertices is assigned the zero form, unless the type II vertex is the only vertex, then one assigns $1$.
+
+We also define the dual two colored operad $\hGra_{m,n}$.
+We consider the graded Lie algebras of invariants of those colored operads.
+To describe them correctly including signs and degrees, consider the two colored operad $\Lie_{m,n}$ governing a $\Lie_m$ algebra acted upon by a $\Lie_n$ algebra. 
+Concretely, we have
+\begin{align*}
+\Lie_{m,n}^1(r,s) &=
+\begin{cases}
+\Lie_n(r) &\text{for $s=0$} \\
+0 &\text{otherwise}
+\end{cases}
+\\
+\Lie_{m,n}^2(r,s) &=
+\begin{cases}
+\Lie_m(s) &\text{for $r=0$ and $s\geq 1$} \\
+\Lie_n(r) \otimes \Lie_m(s)[n-m-1] &\text{for $r\geq 1$ and $s\geq 1$} \\
+0 &\text{otherwise}
+\end{cases}
+\end{align*}
+Note in particular that there is no operation with output in color 2, but no input in color 2.
+We denote the minimal resolution by $\hoLie_{m,n}$.
+Concretely, $\hoLie_{m,n}$ is generated by the following operations: 
+\begin{itemize}
+ \item Operations $\mu_k$ with $k\geq 2$ inputs in color 1 and the output in color one, spanning a one-dimensional representation of $S_k$ in degree $1-(k-1)n$. The operations generate $\hoLie_n$.
+\item Operations $\mu_{k,l}$ with $k$ inputs in color one, $l$ inputs in color 2 and output in color 2, where $k\geq 0$, $l\geq 1$, $k+l\geq 2$. The operation $\mu_{k,l}$ has degree $1-kn-(l-1)m$, and spans a one-dimensional subspace under the action of the group $S_k\times S_l$.
+The $\mu_{0,l}$ generate a copy of $\hoLie_m$ inside $\hoLie_{m,n}$.
+\end{itemize}
+
+
+Then the invariant Lie algebra can be defined as the deformation complex
+\begin{align*}
+\fGC_{m,n} := \Def(\hoLie_{m,n}\stackrel{0}\to \hGra_{m,n})
+%\\
+%\fxGC_{m,n} := \Def(\hoLie_{m,n}\stackrel{0}\to \hxGra_{m,n})
+\end{align*}
+of the trivial maps sending all generators to zero. (This is just the invariants of the total space, up to some degree shifts.)
+Via the map \eqref{equ:sthGramap} we obtain a Maurer-Cartan element
+\begin{align*}
+\hZ_{m,n} &= \sum_\Gamma \Gamma \int \omega_{\Gamma^*} \in \fGC_{m,n}\otimes H(BG).
+\end{align*}
+
+From this point on, let us only focus on the case of even $n-m$, which is what we need below. (FOR US: The case of odd codimension $n-m$ can also be looked at, but it lacks a couple of nice features, and I do not know how to reproduce the results below in that case. We can discuss in person if you want.) 
+%$\fxGC_{m,n}$ and $\hxZ_{m,n}$, which is all we need below.
+To be explicit, the leading order terms of $\hZ_{m,n}$ are
+\[
+\hZ_{m,n} = 
+\underbrace{
+\begin{tikzpicture}
+\node[int] (v) at (0,0) {};
+\node[int] (w) at (0.6,0) {};
+\draw (v) edge (w);
+\end{tikzpicture}
++
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[int] (v) at (0,0) {};
+\node[int] (w) at (0,.5) {};
+\draw (v) edge (w);
+\end{tikzpicture}
++
+%\begin{tikzpicture}
+%\draw (-.5,0) -- (.5,0);
+%\node[int] (w) at (0,.5) {};
+%\draw (w) edge[dashed] (0,0);
+%\end{tikzpicture}
++
+E_{n-m}
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[int] (v) at (-.3,0) {};
+\node[int] (w) at (0.3,0) {};
+\draw (v) edge[bend left] (w);
+\end{tikzpicture}
+%+
+%E_{n-m}
+%\begin{tikzpicture}
+%\draw (-.5,0) -- (.5,0);
+%\node[int] (v) at (0,0) {};
+%\draw (v) edge [loop, dashed] (v);
+%\end{tikzpicture}
+}_{=:\hZ_{m,n}^0}
++ (\cdots)
+\]
+All terms are given by connected graphs, as one easily verifies. (Including the case $m=1$.)
+Note that the second term reflects the fact that to the marking one assigns a form that is not equivariantly closed.
+We denote the leading terms by $\hZ_{m,n}^0$ as indicated in the formula, and regard the remainder $\hZ_{m,n}-\hZ_{m,n}^0$ as a perturbation of $\hZ_{m,n}^0$. One easily verifies that $\hZ_{m,n}^0$ is itself a Maurer-Cartan element.
+
+\begin{rem}
+ The leading term $\hZ_{m,n}^0$ is the Maurer-Cartan element corresponding to the colored operad map
+\[
+ \hoLie_{m,n} \to \Lie_{m,n} \xrightarrow{f} \hGra_{m,n}\otimes H(BG)
+\]
+where $f$ maps the generators as follows:
+\begin{align*}
+ f(\mu_2) &=
+\begin{tikzpicture}
+\node[ext] (v) at (0,0) {};
+\node[ext] (w) at (0.6,0) {};
+\draw (v) edge (w);
+\end{tikzpicture}
+&
+  f(\mu_{1,1}) &=
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[ext] (v) at (0,0) {};
+\node[ext] (w) at (0,.5) {};
+\draw (v) edge (w);
+\end{tikzpicture}
+&
+f(\mu_{0,2}) &=
+E_{n-m}
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[ext] (v) at (-.3,0) {};
+\node[ext] (w) at (0.3,0) {};
+\draw (v) edge[bend left] (w);
+\end{tikzpicture}\, .
+\end{align*}
+\end{rem}
+
+
+\begin{rem}
+ Let us collect several maps between the operads constructed so far.
+First, there are obvious inclusions 
+\begin{align}\label{equ:Liemninclusions}
+ \Lie_m&\to \Lie_{m,n} & \Lie_n&\to \Lie_{m,n}\, ,
+\end{align}
+interpreting the left-hand side in each case as a colored operad concntrated in color 2 (respectively, color 1).
+
+Next, suppose that $R$ is any ring containing an element $\lambda$ of degree $n-m$. Recall that we require $n-m$ to be even. Then there is a colored operad map (cf. also Remark \ref{rem:twocolopfromop})
+\begin{equation}
+ \label{equ:Liemn2Lie}
+\Lie_{m,n} \to \Lie_n^{2-col} \otimes R \,.
+\end{equation}
+This map is defined on generators as follows:
+\begin{align*}
+ \mu_2 &\mapsto \mu_2 
+&
+\mu_{1,1} &\mapsto \mu_2
+&
+\mu_{0,2} &\mapsto \lambda \mu_2.
+\end{align*}
+
+\end{rem}
+
+
+\subsection{Combinatorial description of $\fGC_{m,n}$}
+The graded Lie algebra $\fGC_{m,n}$ has a semi-direct product structure owed to its definition as a deformation complex of a colored operad.
+Concretely, as graded Lie algebra
+\beq{equ:fsplitting}
+\fGC_{m,n} = \fGC_n \ltimes \fGC_{m,n}'
+\eeq
+where $\fGC_n$ are graphs "without baseline", while $\fGC_{m,n}'$ is spanned by graphs with baseline, with at least one vertex on the baseline.
+The Lie bracket on $\fGC_{m,n}'$ is by inserting into type II (i.e., baseline-)vertices. The Lie action of $\fGC_n$ is by insertion into type I vertices.
+
+Changing the ground ring to $H(BG)$ and twisting by the Maurer-Cartan element $\hZ_{m,n}$ produces several terms in the differential.
+Among them are the differential on $\fGC_n$, and terms sending $\fGC_n\otimes H(BG)\to \fGC_{m,n}'\otimes H(BG)$.
+
+\subsection{Connectedness and the dg Lie subalgebra $\GC_{m,n}$ }
+We define the connected dg Lie subalgebra $\GC_{m,n}\subset \fGC_{m,n}$ to be composed of connected graphs.
+Here a graph counts as connected if any two vertices can be connected by a path of edges, irrespective of the vertex types (I or II).
+
+
+Similar to \eqref{equ:fsplitting} we have a splitting of $\GC_{m,n}$ into a semi-direct product (as graded Lie algebra) 
+\beq{equ:splitting}
+\GC_{m,n} = \fGCc_n \ltimes \GC_{m,n}'
+\eeq
+where $\fGCc_n$ is the standard (connected) graph complex, but without any valence restriction on vertices.
+
+\begin{lemma}
+The Maurer-Cartan element $\hZ_{m,n}$ lives inside the connected part $\GC_{m,n}\subset \fGC_{m,n}$.
+\end{lemma}
+\begin{proof}
+Suppose $\Gamma=\Gamma_1\sqcup \Gamma_2$ is a non-connected graph, with the pieces $\Gamma_1,\Gamma_2$ non-empty and not connected to each other. Then the corresponding weight form $\omega_\Gamma=\omega_{\Gamma_1}\wedge \omega_{\Gamma_2}$ is 
+basic under rescaling and translation of the points contributing to $\Gamma_1$ and $\Gamma_2$ \emph{separately}. 
+Hence the form can not have a top form component on configuration space, which is obtained by quotienting out (only) the diagonal scaling and translation action. 
+\end{proof}
+
+\begin{rem}
+For cosmetic reasons one could introduce the following further valence conditions:
+(i) Every type I vertex has valence $\geq 2$ (respectively $\geq 3$) and (ii) every type II vertex that is not connected to a type I vertex has valence $\geq 2$ (resp. $\geq 3$).
+One can easily check that these conditions describe a Lie subalgebra $\GC_{m,n}^{\geq 2}\subset \GC_{m,n}$ (resp. $\GC_{m,n}^{\geq 3}\subset \GC_{m,n}$).
+Furthermore, it is shown in the Appendix that the non-leading piece of the MC element $\hZ_{m,n}-\hZ_{m,n}^0$ lives in the Lie subalgebra $\GC_{m,n}^{\geq 2}$.
+(And in fact also in $\GC_{m,n}^{\geq 3}$ if one absorbs one further term into the leading piece.)
+However, to use a somewhat unified notation, we will stick to the version of $\GC_{m,n}$ without valence condition for now.
+\end{rem}
+
+
+\subsection{A path object}
+Let us now work over the localized coefficient ring $H(BG)_{E_{n-m}}$, formally inverting the orthogonal Euler class.
+\begin{prop}\label{prop:pathobject}
+The dg Lie algebra $\alg g:=(\GC_{m,n} \otimes H(BG)_{E_{n-m}})^{\hZ_{m,n}^0}$ is a path object for $\alg h=\fGCc_n \otimes H(BG)_{E_{n-m}}$.
+This means that there are morphisms of dg Lie algebras factoring the diagonal
+\[
+\begin{tikzcd}
+\alg h \ar{r}{\iota}[swap]{\sim} & \alg g 
+%\ar[shift left=2]{r}{p_0} \ar[shift right=2]{r}[shift right, swap]{p_1} 
+\ar[two heads]{r}{(p_0,p_1)}& \alg h \times \alg h
+\end{tikzcd}
+\]
+with the right-hand map surjective and the left-hand map an (in our case injective) quasi-isomorphism.
+\end{prop}
+The left-hand map $\iota$ sends a graph to the sum of all graphs obtained by declaring an arbitrary subset of vertices to be of type II, multiplying by $E_{n-m}^k$, where $k$ is the number of type II vertices. For example:
+\[
+\begin{tikzpicture}
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (225:.5){};
+\node[int] (v4) at (-45:.5){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge (v4);
+\end{tikzpicture}
+\stackrel{\iota}{\mapsto}
+\begin{tikzpicture}
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (225:.5){};
+\node[int] (v4) at (-45:.5){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge (v4);
+\end{tikzpicture}
++
+E_{n-m}
+\begin{tikzpicture}
+\draw (-1,-.7) -- (1,-.7);
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (225:.5){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge (v4);
+\end{tikzpicture}
++
+E_{n-m}^2
+\begin{tikzpicture}
+\draw (-1,-.7) -- (1,-.7);
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (-.5,-.7){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge[bend left] (v4);
+\end{tikzpicture}
++
+E_{n-m}^3
+\begin{tikzpicture}
+\draw (-1,-.7) -- (1,-.7);
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (0,-.7){};
+\node[int] (v3) at (-.5,-.7){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge[bend right] (v3) edge[bend left] (v4) (v3) edge[bend left] (v4);
+\end{tikzpicture}
++
+E_{n-m}^4
+\begin{tikzpicture}
+\draw (-1,-.7) -- (1.5,-.7);
+\node[int] (v1) at (1,-.7){};
+\node[int] (v2) at (0,-.7){};
+\node[int] (v3) at (-.5,-.7){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge[bend right] (v2) edge[bend right] (v3) edge[bend right] (v4) (v2) edge[bend right] (v3) edge[bend left] (v4) (v3) edge[bend left] (v4);
+\end{tikzpicture}
+\]
+The first right-hand map $p_0$ is the projection to $\alg h$ that projects to the first factor of \eqref{equ:splitting}.
+The map $p_1$ is the projection to the piece where all vertices are type II, multiplying by $E_{n-m}^{-k}$, where $k$ is the number of type II vertices, sending all graphs with type I vertices to zero. For example:
+\begin{align*}
+\begin{tikzpicture}
+\draw (-1,-.7) -- (1,-.7);
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (-.5,-.7){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge[bend left] (v4);
+\end{tikzpicture}
+&\stackrel{p_1}{\mapsto}
+0
+&
+\begin{tikzpicture}[yshift=.7cm]
+\draw (-1,-.7) -- (1.5,-.7);
+\node[int] (v1) at (1,-.7){};
+\node[int] (v2) at (0,-.7){};
+\node[int] (v3) at (-.5,-.7){};
+\node[int] (v4) at (.5,-.7){};
+\draw (v1) edge[bend right] (v2) edge[bend right] (v3) edge[bend right] (v4) (v2) edge[bend right] (v3) edge[bend left] (v4) (v3) edge[bend left] (v4);
+\end{tikzpicture}
+\stackrel{p_1}{\mapsto}
+E_{n-m}^{-4}
+\begin{tikzpicture}
+\node[int] (v1) at (45:.5){};
+\node[int] (v2) at (135:.5){};
+\node[int] (v3) at (225:.5){};
+\node[int] (v4) at (-45:.5){};
+\draw (v1) edge (v2) edge (v3) edge (v4) (v2) edge (v3) edge (v4) (v3) edge (v4);
+\end{tikzpicture}
+\end{align*}
+
+\begin{proof}
+It is an exercise to check that the maps respect the dg Lie structure:
+The easiest way is to conduct a small graphical computation. Alternatively, to see that $p_0$ and $p_1$ are dg Lie algebra maps, one uses the representation of the graph complex as deformation complex. Then $p_0$ and $p_1$ are essentially pull-backs under the inclusions \eqref{equ:Liemninclusions}.
+For the map $\iota$ a similar but slighter longer argument is possible, using the map \eqref{equ:Liemn2Lie}, inducing the second arrow in the composition
+\begin{multline*}
+ \fGC_{n}\otimes H(BG)_{E_{n-m}}= \Def(\hoLie_n\to \Gra_n\otimes H(BG)_{E_{n-m}})
+\to \Def(\hoLie^{2-col}_n\to \Gra_n^{2-col}\otimes H(BG)_{E_{n-m}})
+\\
+\to 
+\Def(\hoLie_{m,n}\to \Gra_n^{2-col}\otimes H(BG)_{E_{n-m}}) \cong \fGC_{m,n}\otimes H(BG)_{E_{n-m}}.
+\end{multline*}
+
+
+ 
+Next let us show that the maps $\iota, p_0, p_1$ are quasi-isomorphisms, which is a less straightforward statement.
+First note that it suffices to show that $p_1$ is a quasi-isomorphism, because then (by 2-out-of-3) so is $\iota$, and then (by 2-out-of-3 again) so is $p_0$.
+
+So let us check that $p_1$ is a quasi-isomorphism.
+Consider a univalent type II vertex attached to a type I vertex as a "marking" of that type I vertex.
+Now take a spectral sequence on the total number of edges plus vertices, disregarding the markings. (I.e., the univalent type II vertices and their attaching edges to a type I vertex don't contribute to the count).
+Then the differential $\delta_0$ on the associated graded of $\alg g$ becomes
+\[
+\delta_0 : \Gamma \mapsto E_{n-m} \sum_v \Gamma \sqcup(\text{add marking at vertex $v$})
+\]
+where the sum is over all type I vertices. In words, we add a marking to one type I vertex, summing over all choices of such vertex.
+Note also that in particular, if the graph $\Gamma$ above is in the first summand on the right-hand side of \eqref{equ:splitting}, this operation sends it to a linear combination of graphs in the second summand of the right-hand side of \eqref{equ:splitting}.
+Now consider the operation $h_0'$ by summing over all vertices and removing one marking (if one is present).
+By a simple computation:
+\[
+(\delta_0 h_0' + h_0' \delta_0)(\Gamma) = (\text{\# of type I vertices}) E_{n-m} \Gamma.
+\]
+Hence the operation 
+\[
+h_0: \Gamma \mapsto
+\begin{cases}
+0 & \text{if $\Gamma$ has no type I vertices}\\
+\frac 1 {(\text{\# of type I vertices})} E_{n-m}^{-1} h_0'(\Gamma) &\text{otherwise}
+\end{cases}
+\]
+is a homotopy for $\delta_0$, in the sense that $\delta_0 h_0 + h_0\delta_0=\mathit{id}-\pi$, where $\pi$ is the projection onto the subspace spanned by graphs without type II vertices. That means that on the level of associated graded spaces the map $p_1$ induces an isomorphism on cohomology
+%\footnote{Concretely, this isomorphism is multiplication by $E_{n-m}^{(\text{\# of type II vertices})}$.}
+and hence the spectral sequence collapses here. 
+\end{proof}
+
+The following result is evident from the definitions, but let us still call it a lemma.
+\begin{lemma}\label{lem:MCelementspath}
+The images of the Maurer-Cartan element $\hZ_{m,n}-\hZ_{m,n}^0$ under the maps $p_0$, $p_1$ of the preceding Proposition \ref{prop:pathobject} are as follows.
+\begin{align*}
+p_0(\hZ_{m,n}-\hZ_{m,n}^0) &= Z_{m,n}^n \\
+p_1(\hZ_{m,n}-\hZ_{m,n}^0) &= L^{E_{n-m}} Z_{m}^m 
+\end{align*}
+\end{lemma}
+
+Now the proof of Theorem \ref{thm:mainloc} is simple.
+
+\begin{proof}[Proof of Theorem \ref{thm:mainloc}]
+It suffices to show the statement for $l=n-k$.
+By definition, two Maurer-Cartan elements $x,y$ in a dg Lie algebra $\alg h$ are gauge equivalent if there is a path object $\alg g$ together with a MC element $z\in \alg g$ such that $p_0(z)=x$ and $p_1(z)=y$, where $p_0,p_1:\alg g\to \alg h$ are the two maps in the definition of path object.
+Typically one takes $\alg g=\alg h[t,dt]$, but any other path object is fine, see Appendix \ref{app:pathobjects}.
+
+In our case we take the path object of Proposition \ref{prop:pathobject} (with $m=k$).
+Then Lemma \ref{lem:MCelementspath} says that the MC elements are gauge equivalent in $\fGCc_n\otimes H(BG)$.
+Finally, since $\fGCc_n$ and $\GC_n^{2}$ are quasi-isomorphic, one concludes the result.
+(TODO: Here one should be a little more careful... the cleanest is to restrict the valence of vertices in $\GC_{m,n}$ from the start.) 
+\end{proof}
+
+\appendix
+
+\section{Some results about lifts etc.}
+\subsection{Path objects and gauge equivalence}\label{app:pathobjects}
+The results here are more or less for confirmation / explicit formulas on how to construct a gauge transformation in the naive or classical sense from a path object. They are not needed strictly speaking.
+\begin{lemma}
+Suppose $\alg h$ is a dg Lie (or $L_\infty$-)algebra and $\alg g$ is a path object with maps 
+\[
+\begin{tikzcd}
+\alg h \ar{r}{\iota} & \alg g \ar{r}{p_0} \ar{r}{p_1} & \alg h
+\end{tikzcd}
+\]
+Then the following holds:
+\begin{enumerate}
+\item There is a "naive" homotopy between the maps $\mathit{id}_{\alg g}$ and $\iota\circ p_0$, i.e., an $L_\infty$-morphism
+\[
+F: \alg g\to \alg g[t,dt]
+\]
+which agrees with $\mathit{id}_{\alg g}$ at $t=1$ and $\iota\circ p_0$ at $t=0$.
+\item There is an $L_\infty$-quasi-isomorphism
+\[
+G: \alg g\to \alg h[t,dt]
+\]
+such that $p_0=ev_{t=0}\circ G$ and $p_1=ev_{t=1}\circ G$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+To show the second statement given the first we simply set 
+\[
+G = p_1\circ F,
+\]
+where we quietly extend $p_1$ $t$- and $dt$-linearly. 
+Then 
+\[
+ev_{t=1}\circ G=ev_{t=1}\circ p_1 \circ F = p_1 
+\]
+and 
+\[
+ev_{t=0}\circ G=p_1 \circ \iota \circ p_0 = p_0. 
+\]
+For the first statement one has to pick some homotopy $h$ on $\alg g$ such that
+\[
+dh+hd = \mathit{id}_{\alg g} - \iota\circ p_0.
+\]
+Then the $L_\infty$-morphism $F$ can be recursively constructed.
+TODO: It would be nice if here there is an explicit formula, akin to homotopy lifting or homotopy transfer.
+TODO: Can one ensure that $F\circ \iota$ is constant in $t$?
+\end{proof}
+
+Now let $x,y\in \alg h$ be two MC elements. Suppose $z\in \alg g$ is an MC element such that $p_0(z)=x$ and $p_1(z)=y$.  
+Given the Lemma one can then construct a naive gauge equivalence between $x$ and $y$.
+Concretely, $G(z)\in \alg h[t,dt]$ is a family of Maurer-Cartan elements interpolating between $x$ and $y$ at $t=0$ and $t=1$, together with a family of homotopies. Integrating the flow generated by those homotopies (TODO: add detail here?) we find the explicit gauge transformation between $x$ and $y$.
+
+
+\section{Vanishing Lemmas for graphs with (certain) bivalent and univalent vertices}
+The goal here is to show that the integral weights of graphs involving bivalent vertices of several types vanish. This can be done by using the standard reflection argument due to Kontsevich.
+%To this end, it is easiest to exploit the full $O(n)$-, respectively $O(m)\times O(n-m)$-symmetry, and pick our equivariant forms in the model 
+%\[
+%(S(\alg g^*[-2]) \otimes \Omega(M))^{G_0}.
+%\]
+%We can return to the smaller toric model simply by restriction to $\alg t\subset \alg g$.
+%The main tool from which the vanishing results can be shown without actually computing any integrals is the following.
+%\begin{lemma}
+%There is no $O(n)$-anti-invariant $O(n)$-equivariant form on $S^{n-1}$ of degree $\leq n-2$.
+%\end{lemma}
+%\begin{proof}
+%This is a consequence of classical invariant theory. Any $O(n)$-anti-invariant (equivariant) form on the sphere is uniquely determined by its value at one point of the sphere, which is an element of 
+%\[
+%\bigoplus_{i,j} (\wedge^2 \R^n)^i \otimes \wedge^j \R^{n-1}.
+%\]
+%Now this restriction has to still be $O(n-1)$-anti-invariant. But classical invariant theory (and the fact that $\wedge^2 \R^n\cong \R^{n-1}\otimes \wedge^2 \R^{n-1}$) dictates that any such tensor can be written using an odd number of copies of completely antiymmetric $n-1$-tensors, and any number of copies of the Euclidean product (i.e., symmetric 2-tensors).
+%In particular, the lowest-degree $O(n-1)$-anti-invariant element occurs in degree $n-1$, when one uses precisely one antysymmetric $n-1$ tensor.
+%\end{proof}
+
+%The above result can be used to deduce various vanishing Lemmas, if we choose our propagators to always be maximally invariant.
+%As an exercise, let us start with the basic vanishing Lemma.
+
+
+
+%(It also follows with weaker pre-condition from an argument of Kontsevich, cf. \cite{}, however, let us rederive it as an exercise.)
+\begin{lemma}
+The following form vanishes:
+\[
+\begin{tikzpicture}
+\node[int](v) at (0,0.2){};
+\node[ext](v1) at (-0.5,0){1};
+\node[ext](v2) at (0.5,0.5){2};
+\draw (v) edge (v1) edge (v2);
+\end{tikzpicture}
+=0
+\]
+\end{lemma}
+\begin{proof}
+...
+\end{proof}
+
+Similarly, one shows the following:
+
+\begin{lemma}
+The following form vanishes:
+\[
+\begin{tikzpicture}
+\draw (-1,0)--(1,0);
+\node[int](v) at (0,0){};
+\node[ext](v1) at (-0.5,0){1};
+\node[ext](v2) at (0.5,0){2};
+\draw (v) edge[bend right] (v1) edge[bend left] (v2);
+\end{tikzpicture}
+=0
+\]
+\end{lemma}
+\begin{proof}
+The edge between the two type II vertices is assigned the form 
+\[
+E_{n-m} \alpha,
+\]
+where $\alpha$ is proportional to the $m$-dimensional propagator. Hence applying the previous Lemma (with $n$ replaced by $n-m$) gives the result.
+\end{proof}
+
+
+%\begin{lemma}
+%The following form vanishes:
+%\[
+%\begin{tikzpicture}
+%\draw (-.5,0) -- (.5,0);
+%\coordinate(w) at (0,0);
+%\node[int](v) at (0,0.5){};
+%\node[ext](v2) at (.5,1){1};
+%\draw (v) edge[dashed] (w) edge (v2);
+%\end{tikzpicture}
+%=0
+%\]
+%\end{lemma}
+%\begin{proof}
+%Choosing invariant propagators, the form is an $O(n-m)$-anti-invariant equivariant $n-m-2$-form on $S^{n-m-1}$. 
+%\end{proof}
+
+\begin{lemma}
+The following forms vanish:
+\begin{align*}
+&
+\begin{tikzpicture}
+\node[int](v) at (0,0.5){};
+\node[ext](v2) at (.5,1){1};
+\draw (v) edge (v2);
+\end{tikzpicture}
+&&
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[int](v) at (0,0.5){};
+\node[ext](v2) at (.5,1){1};
+\draw (v) edge (v2);
+\end{tikzpicture}
+\end{align*}
+\end{lemma}
+\begin{proof}
+This is purely by degree reasons, the form would have degree $-1$.
+\end{proof}
+
+
+\begin{lemma}
+The weights of all graphs containing univalent vertices vanish, except for the graphs occurring in $\hZ^0_{m,n}$ in \eqref{} above, and except for one-valent type II vertices that may be attached to type I vertices:
+\[
+\begin{tikzpicture}
+\draw (-.5,0) -- (.5,0);
+\node[int](w) at (0,0){};
+\node[ext](v2) at (0,.5){1};
+\draw (v2) edge (w);
+\end{tikzpicture}
+\]
+\end{lemma}
+\begin{proof}
+...
+\end{proof}
+
+
+
+\section{Failed attempts and possible alternative (better) proofs}
+
+\end{document}
