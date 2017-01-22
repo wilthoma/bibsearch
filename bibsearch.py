@@ -2,7 +2,7 @@
 import argparse
 import os 
 
-parser = argparse.ArgumentParser(description='Searches for a bib entry in tex files.')
+parser = argparse.ArgumentParser(description='Searches for a bibliography entry in latex files.\nBy default scans the current folder recursively for all .tex files.', epilog='Example:\n\n> bibsearch foo bar\nSearches for bibitems containng the words foo and bar.\n\n> bibsearch foo bar -f *.tux\nSearches only in files with the extension .tux.',formatter_class=argparse.RawTextHelpFormatter)
 
 parser.add_argument('strings', metavar='S', type=str, nargs='+',
                     help='strings to be included in the entry')
