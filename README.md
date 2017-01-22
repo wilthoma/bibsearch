@@ -1,2 +1,2 @@
 # bibsearch
-A command line tool for searching bibliograph in latex documents.
+A command line tool for searching bibliography in latex documents.
